@@ -7,32 +7,23 @@
 </head>
 
 <body>
-  <p>This is a paragraph</p>
   <script>
+
+  var dataArray = [20, 45, 50, 505];
 
   var canvas =  d3.select("body")
                   .append("svg")
                   .attr("width", 500)
-                  .attr("height", 500);
+                  .attr("height", 400)
+                  .style("background-color", "lightblue");
 
-  var circle = canvas.append("circle")
-                      .attr("cx", 250)
-                      .attr("cy", 250)
-                      .attr("r", 50)
-                      .attr("fill","red");
-
-  var rect = canvas.append("rect")
-              .attr("width", 250)
-              .attr("height", 150)
-              .attr("fill", "lightblue");
-
-  var line = canvas.append("line")
-              .attr("x1", 0)
-              .attr("y1", 100)
-              .attr("x2", 400)
-              .attr("y2", 400)
-              .attr("stroke", "orange")
-              .attr("stroke-width", 10);
+  var bars = canvas.selectAll("rect")
+              .data(dataArray)
+              .enter()
+                .append("rect")
+                .attr("width", 45)
+                .attr("height", function(d) { return d; })
+                .attr("x", function(d, i){ return i * 100; });
 
     console.log(d3);
   </script>
